@@ -1,0 +1,6 @@
+terraform_cloud_organization_name = "your-organization-name"
+terraform_cloud_project_name      = "your-proejct-name"
+terraform_cloud_workspace_name    = "your-workspace-name"
+github_organisation               = "your-github-organization-name"
+github_repository                 = "your-github-repository-name"
+github_working_directory          = "your-github-working-directory"
