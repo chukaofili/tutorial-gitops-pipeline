@@ -60,7 +60,7 @@ resource "google_container_cluster" "primary" {
   deletion_protection = false
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
+resource "google_container_node_pool" "primary_nodes" {
   name       = "${var.gke_cluster_name}-node-pool"
   location   = var.google_region
   cluster    = google_container_cluster.primary.name

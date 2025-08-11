@@ -6,12 +6,20 @@ terraform {
     google = {
       source = "hashicorp/google"
     }
+    github = {
+      source = "integrations/github"
+    }
   }
 }
 
 provider "google" {
   project = var.google_project_id
   region  = var.google_region
+}
+
+provider "github" {
+  token = var.github_token
+  owner = var.github_organisation
 }
 
 /*

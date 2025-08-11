@@ -56,3 +56,9 @@ variable "service_account_id" {
   type        = string
   default     = "terraform-cloud-sa"
 }
+
+variable "github_token" {
+  description = "GitHub personal access token for API access"
+  type        = string
+  sensitive   = true
+}

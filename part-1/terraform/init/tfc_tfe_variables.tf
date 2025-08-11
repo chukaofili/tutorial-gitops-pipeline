@@ -43,6 +43,15 @@ resource "tfe_variable" "tfc_gcp_service_account_email" {
   description  = "Service account email for Workload Identity impersonation"
 }
 
+resource "tfe_variable" "github_token" {
+  workspace_id = tfe_workspace.main_workspace.id
+  key          = "GITHUB_TOKEN"
+  value        = github_repository_personal_access_token.terraform_cloud_token.token
+  category     = "env"
+  sensitive    = true
+  description  = "GitHub personal access token with admin permissions"
+}
+
 /*
   Additional Terraform variables that will be available in the infrastructure workspace
 */
