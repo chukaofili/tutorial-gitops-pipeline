@@ -96,7 +96,9 @@ resource "google_project_iam_member" "terraform_cloud_sa_permissions" {
     "roles/iam.serviceAccountAdmin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/secretmanager.admin",
-    "roles/storage.admin"
+    "roles/storage.admin",
+    "roles/serviceusage.serviceUsageAdmin",
+    "roles/logging.admin"
   ])
 
   project = var.google_project_id
