@@ -46,7 +46,7 @@ resource "tfe_variable" "tfc_gcp_service_account_email" {
 resource "tfe_variable" "github_token" {
   workspace_id = tfe_workspace.main_workspace.id
   key          = "GITHUB_TOKEN"
-  value        = github_repository_personal_access_token.terraform_cloud_token.token
+  value        = var.github_token
   category     = "env"
   sensitive    = true
   description  = "GitHub personal access token with admin permissions"
