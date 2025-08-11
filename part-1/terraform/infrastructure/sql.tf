@@ -1,5 +1,8 @@
 data "google_compute_network" "default" {
   name = "default"
+  depends_on = [
+    google_project_service.required_apis
+  ]
 }
 
 resource "google_compute_global_address" "default_ip_range" {
@@ -8,13 +11,21 @@ resource "google_compute_global_address" "default_ip_range" {
   address_type  = "INTERNAL"
   prefix_length = 16
   network       = data.google_compute_network.default.id
+
+  depends_on = [
+    google_project_service.required_apis
+  ]
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
-  depends_on              = [google_project_service.required_apis]
   network                 = data.google_compute_network.default.id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.default_ip_range.name]
+
+  depends_on = [
+    google_project_service.required_apis,
+    google_compute_global_address.default_ip_range
+  ]
 }
 
 
