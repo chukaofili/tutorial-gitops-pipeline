@@ -41,9 +41,11 @@ resource "google_sql_database_instance" "postgres" {
 
   settings {
     tier              = var.sql_tier
+    edition           = "ENTERPRISE"
     availability_type = "ZONAL"
     disk_type         = "PD_SSD"
     disk_size         = var.sql_disk_size
+    disk_autoresize   = true
 
     backup_configuration {
       enabled                        = true
