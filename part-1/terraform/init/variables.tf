@@ -27,3 +27,32 @@ variable "github_working_directory" {
   description = "Github working directory, use this to specify the github working directory to use for terraform cloud"
   type        = string
 }
+
+variable "google_project_id" {
+  description = "Google Cloud project ID where resources will be created"
+  type        = string
+}
+
+variable "google_region" {
+  description = "Google Cloud region for resources"
+  type        = string
+  default     = "europe-west2"
+}
+
+variable "workload_identity_pool_id" {
+  description = "ID for the Workload Identity Pool"
+  type        = string
+  default     = "terraform-cloud-pool"
+}
+
+variable "workload_identity_provider_id" {
+  description = "ID for the Workload Identity Provider"
+  type        = string
+  default     = "terraform-cloud-provider"
+}
+
+variable "service_account_id" {
+  description = "ID for the service account that Terraform Cloud will use"
+  type        = string
+  default     = "terraform-cloud-sa"
+}
