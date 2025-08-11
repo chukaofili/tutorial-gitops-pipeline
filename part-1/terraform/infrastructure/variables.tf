@@ -66,7 +66,7 @@ variable "sql_instance_name" {
 variable "sql_tier" {
   description = "Machine type for Cloud SQL instance"
   type        = string
-  default     = "db-f1-micro"
+  default     = "db-custom-1-3840"
 }
 
 variable "sql_disk_size" {
