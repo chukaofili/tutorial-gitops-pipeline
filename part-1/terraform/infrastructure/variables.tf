@@ -22,7 +22,7 @@ variable "google_region" {
 variable "environment" {
   description = "Environment name (e.g., dev, staging, prod)"
   type        = string
-  default     = "dev"
+  default     = "production"
 }
 
 # GKE Variables
@@ -36,6 +36,18 @@ variable "gke_node_count" {
   description = "Number of nodes in the GKE node pool"
   type        = number
   default     = 4
+}
+
+variable "gke_node_disk_size" {
+  description = "Disk size in GB for GKE nodes"
+  type        = number
+  default     = 50
+}
+
+variable "gke_node_disk_type" {
+  description = "Disk type for GKE nodes"
+  type        = string
+  default     = "pd-balanced"
 }
 
 variable "gke_machine_type" {
@@ -66,7 +78,7 @@ variable "sql_disk_size" {
 variable "sql_database_name" {
   description = "Name of the database to create"
   type        = string
-  default     = "app_db"
+  default     = "notestack_db"
 }
 
 variable "sql_user_name" {

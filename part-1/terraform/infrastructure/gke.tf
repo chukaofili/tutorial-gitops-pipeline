@@ -12,6 +12,11 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  node_config {
+    disk_size_gb = var.gke_node_disk_size
+    disk_type    = var.gke_node_disk_type
+  }
+
   private_cluster_config {
     enable_private_endpoint = false
     enable_private_nodes    = true
@@ -57,6 +62,8 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_config {
     preemptible  = false
     machine_type = var.gke_machine_type
+    disk_size_gb = var.gke_node_disk_size
+    disk_type    = var.gke_node_disk_type
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.gke_service_account.email

@@ -111,10 +111,7 @@ resource "google_sql_database_instance" "postgres" {
 }
 
 resource "google_sql_database" "database" {
-  for_each = toset([
-    "notestack_db"
-  ])
-  name     = each.value
+  name     = var.sql_database_name
   instance = google_sql_database_instance.postgres.name
 }
 
