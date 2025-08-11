@@ -88,12 +88,15 @@ resource "google_service_account_iam_binding" "terraform_cloud_workload_identity
 */
 resource "google_project_iam_member" "terraform_cloud_sa_permissions" {
   for_each = toset([
+    "roles/artifactregistry.admin",
+    "roles/cloudsql.admin",
     "roles/compute.admin",
-    "roles/storage.admin",
+    "roles/container.admin",
+    "roles/dns.admin",
     "roles/iam.serviceAccountAdmin",
     "roles/resourcemanager.projectIamAdmin",
-    "roles/container.admin",
-    "roles/dns.admin"
+    "roles/secretmanager.admin",
+    "roles/storage.admin"
   ])
 
   project = var.google_project_id
