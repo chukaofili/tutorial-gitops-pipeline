@@ -74,9 +74,3 @@ variable "sql_user_name" {
   type        = string
   default     = "app_user"
 }
-
-variable "sql_user_password" {
-  description = "Password for the database user"
-  type        = string
-  sensitive   = true
-}
