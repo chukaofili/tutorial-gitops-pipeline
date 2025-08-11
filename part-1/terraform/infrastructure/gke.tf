@@ -51,6 +51,11 @@ resource "google_container_cluster" "primary" {
   gateway_api_config {
     channel = "CHANNEL_STANDARD"
   }
+
+  timeouts {
+    create = "60m"
+    update = "60m"
+  }
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
@@ -90,6 +95,11 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   network_config {
     enable_private_nodes = true
+  }
+
+  timeouts {
+    create = "60m"
+    update = "60m"
   }
 }
 
