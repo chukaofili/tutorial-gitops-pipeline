@@ -3,7 +3,8 @@ resource "google_project_service" "gcp_apis" {
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
     "sts.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "cloudresourcemanager.googleapis.com",
+    "secretmanager.googleapis.com"
   ])
   service            = each.value
   disable_on_destroy = false
@@ -95,11 +96,14 @@ resource "google_project_iam_member" "terraform_cloud_sa_permissions" {
     "roles/container.admin",
     "roles/dns.admin",
     "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountKeyAdmin",
+    "roles/iam.serviceAccountUser",
     "roles/resourcemanager.projectIamAdmin",
     "roles/secretmanager.admin",
     "roles/storage.admin",
+    "roles/logging.admin",
     "roles/serviceusage.serviceUsageAdmin",
-    "roles/logging.admin"
+    "roles/servicenetworking.networksAdmin"
   ])
 
   project = var.google_project_id

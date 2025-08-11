@@ -136,12 +136,22 @@ resource "google_secret_manager_secret" "postgres_host" {
   replication {
     auto {}
   }
+
+  depends_on = [
+    google_project_service.required_apis,
+    google_sql_database_instance.postgres
+  ]
 }
 
 resource "google_secret_manager_secret_version" "postgres_host_version" {
   secret                 = google_secret_manager_secret.postgres_host.id
   secret_data_wo_version = 1
   secret_data_wo         = google_sql_database_instance.postgres.private_ip_address
+
+  depends_on = [
+    google_secret_manager_secret.postgres_host,
+    google_sql_database_instance.postgres
+  ]
 }
 
 
@@ -150,12 +160,21 @@ resource "google_secret_manager_secret" "postgres_port" {
   replication {
     auto {}
   }
+
+  depends_on = [
+    google_project_service.required_apis,
+  ]
 }
 
 resource "google_secret_manager_secret_version" "postgres_port_version" {
   secret                 = google_secret_manager_secret.postgres_port.id
   secret_data_wo_version = 1
   secret_data_wo         = "5432"
+
+  depends_on = [
+    google_project_service.required_apis,
+    google_secret_manager_secret.postgres_port
+  ]
 }
 
 
@@ -164,12 +183,21 @@ resource "google_secret_manager_secret" "postgres_username" {
   replication {
     auto {}
   }
+
+  depends_on = [
+    google_project_service.required_apis,
+  ]
 }
 
 resource "google_secret_manager_secret_version" "postgres_username_version" {
   secret                 = google_secret_manager_secret.postgres_username.id
   secret_data_wo_version = 1
   secret_data_wo         = var.sql_user_name
+
+  depends_on = [
+    google_project_service.required_apis,
+    google_secret_manager_secret.postgres_username
+  ]
 }
 
 resource "google_secret_manager_secret" "postgres_password" {
@@ -177,12 +205,21 @@ resource "google_secret_manager_secret" "postgres_password" {
   replication {
     auto {}
   }
+
+  depends_on = [
+    google_project_service.required_apis
+  ]
 }
 
 resource "google_secret_manager_secret_version" "postgres_password_version" {
   secret                 = google_secret_manager_secret.postgres_password.id
   secret_data_wo_version = 1
   secret_data_wo         = random_password.postgres_password.result
+
+  depends_on = [
+    google_project_service.required_apis,
+    google_secret_manager_secret.postgres_password
+  ]
 }
 
 resource "google_sql_user" "users" {
