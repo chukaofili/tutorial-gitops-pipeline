@@ -6,7 +6,7 @@
 resource "tfe_variable" "tfc_gcp_provider_auth" {
   workspace_id = tfe_workspace.main_workspace.id
   key          = "TFC_GCP_PROVIDER_AUTH"
-  value        = "true"
+  value        = true
   category     = "env"
   description  = "Enable Google Cloud provider authentication via Workload Identity"
 }
@@ -21,23 +21,23 @@ resource "tfe_variable" "tfc_gcp_project_number" {
 
 resource "tfe_variable" "tfc_gcp_workload_identity_pool_id" {
   workspace_id = tfe_workspace.main_workspace.id
-  key          = "TFC_GCP_WORKLOAD_IDENTITY_POOL_ID"
-  value        = google_iam_workload_identity_pool.terraform_cloud_pool.name
+  key          = "TFC_GCP_WORKLOAD_POOL_ID"
+  value        = google_iam_workload_identity_pool.terraform_cloud_pool.workload_identity_pool_id
   category     = "env"
   description  = "Workload Identity Pool ID for authentication"
 }
 
 resource "tfe_variable" "tfc_gcp_workload_identity_provider_id" {
   workspace_id = tfe_workspace.main_workspace.id
-  key          = "TFC_GCP_WORKLOAD_IDENTITY_PROVIDER_ID"
-  value        = google_iam_workload_identity_pool_provider.terraform_cloud_provider.name
+  key          = "TFC_GCP_WORKLOAD_PROVIDER_ID"
+  value        = google_iam_workload_identity_pool_provider.terraform_cloud_provider.workload_identity_pool_provider_id
   category     = "env"
   description  = "Workload Identity Provider ID for authentication"
 }
 
 resource "tfe_variable" "tfc_gcp_service_account_email" {
   workspace_id = tfe_workspace.main_workspace.id
-  key          = "TFC_GCP_SERVICE_ACCOUNT_EMAIL"
+  key          = "TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
   value        = google_service_account.terraform_cloud_sa.email
   category     = "env"
   description  = "Service account email for Workload Identity impersonation"
@@ -60,4 +60,20 @@ resource "tfe_variable" "google_region" {
   value        = var.google_region
   category     = "terraform"
   description  = "Google Cloud region"
+}
+
+resource "tfe_variable" "terraform_cloud_organization_name" {
+  workspace_id = tfe_workspace.main_workspace.id
+  key          = "terraform_cloud_organization_name"
+  value        = data.tfe_organization.org.name
+  category     = "terraform"
+  description  = "Terraform Cloud organization"
+}
+
+resource "tfe_variable" "terraform_cloud_workspace_name" {
+  workspace_id = tfe_workspace.main_workspace.id
+  key          = "terraform_cloud_workspace_name"
+  value        = tfe_workspace.main_workspace.name
+  category     = "terraform"
+  description  = "Terraform Cloud workspace"
 }
