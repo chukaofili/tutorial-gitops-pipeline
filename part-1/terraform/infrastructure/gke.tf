@@ -1,5 +1,20 @@
 resource "google_container_cluster" "primary" {
-  name     = var.gke_cluster_name
+  name = var.gke_cluster_name
+
+  # ⚠️ Important: This is a *regional* cluster by default, which changes how node_count works.
+  #
+  # In regional GKE, node_count is applied *per zone*. Since a regional cluster
+  # spans 3 zones by default, setting gke_node_count = 4 actually creates:
+  #   4 nodes/zone × 3 zones = 12 total nodes
+  #
+  # If your intention is to provision only 4 nodes in total, you have two options:
+  #   1. Set gke_node_count = 1 (→ 1 node/zone × 3 zones = 3 total nodes)
+  #   2. Use a *zonal* cluster instead by specifying a zone explicitly:
+  #        location = "${var.google_region}-a"
+  #      (e.g., europe-west2-a, europe-west2-b, europe-west2-c)
+  #
+  # Each GCP region has at least 3 zones (a, b, c), so be mindful of this
+  # multiplier effect when sizing your cluster.
   location = var.google_region
 
   depends_on = [
@@ -61,9 +76,24 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "${var.gke_cluster_name}-node-pool"
+  name    = "${var.gke_cluster_name}-node-pool"
+  cluster = google_container_cluster.primary.name
+
+  # ⚠️ Important: This is a *regional* cluster by default, which changes how node_count works.
+  #
+  # In regional GKE, node_count is applied *per zone*. Since a regional cluster
+  # spans 3 zones by default, setting gke_node_count = 4 actually creates:
+  #   4 nodes/zone × 3 zones = 12 total nodes
+  #
+  # If your intention is to provision only 4 nodes in total, you have two options:
+  #   1. Set gke_node_count = 1 (→ 1 node/zone × 3 zones = 3 total nodes)
+  #   2. Use a *zonal* cluster instead by specifying a zone explicitly:
+  #        location = "${var.google_region}-a"
+  #      (e.g., europe-west2-a, europe-west2-b, europe-west2-c)
+  #
+  # Each GCP region has at least 3 zones (a, b, c), so be mindful of this
+  # multiplier effect when sizing your cluster.
   location   = var.google_region
-  cluster    = google_container_cluster.primary.name
   node_count = var.gke_node_count
 
   node_config {

@@ -32,15 +32,15 @@ variable "gke_cluster_name" {
 }
 
 variable "gke_node_count" {
-  description = "Number of nodes in the GKE node pool"
+  description = "Number of nodes per zone in the node pool. For regional clusters this is multiplied by the number of zones (default 3). To control total node count, either reduce this value or switch to a zonal cluster."
   type        = number
-  default     = 4
+  default     = 1
 }
 
 variable "gke_node_disk_size" {
   description = "Disk size in GB for GKE nodes"
   type        = number
-  default     = 50
+  default     = 20
 }
 
 variable "gke_node_disk_type" {
