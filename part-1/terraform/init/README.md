@@ -43,7 +43,7 @@ Before running these scripts, ensure you have:
    github_working_directory          = "part-1/terraform/infrastructure"
 
    google_project_id                 = "your-google-project-id"
-   google_region                     = "europe-west2"  # London region
+   google_region                     = "europe-west3"  # EU region
    workload_identity_pool_id         = "terraform-cloud-pool"
    workload_identity_provider_id     = "terraform-cloud-provider"
    service_account_id                = "terraform-cloud-sa"

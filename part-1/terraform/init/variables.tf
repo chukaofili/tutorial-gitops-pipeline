@@ -36,7 +36,7 @@ variable "google_project_id" {
 variable "google_region" {
   description = "Google Cloud region for resources"
   type        = string
-  default     = "europe-west2"
+  default     = "europe-west3"
 }
 
 variable "workload_identity_pool_id" {
