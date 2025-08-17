@@ -30,6 +30,7 @@ resource "google_container_cluster" "primary" {
   node_config {
     disk_size_gb = var.gke_node_disk_size
     disk_type    = var.gke_node_disk_type
+    tags         = [var.environment]
   }
 
   private_cluster_config {
@@ -97,7 +98,13 @@ resource "google_container_node_pool" "primary_nodes" {
   node_count = var.gke_node_count
 
   node_config {
-    preemptible  = false
+    # Note: Preemptible VMs are cheaper but can be terminated by Google at any time.  
+    # They are best suited for short-lived or non-critical workloads.  
+    # For production, consider a hybrid approach: use a mix of node pools (regular VMs for stability, 
+    # preemptibles for cost savings), and combine this with node labels and PodDisruptionBudgets 
+    # to ensure workloads are scheduled appropriately based on type and importance.  
+    # In this tutorial, preemptibles are fine since we’ll tear down the infrastructure afterward.
+    preemptible  = true
     machine_type = var.gke_machine_type
     disk_size_gb = var.gke_node_disk_size
     disk_type    = var.gke_node_disk_type
