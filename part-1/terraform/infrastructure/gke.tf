@@ -26,11 +26,32 @@ resource "google_container_cluster" "primary" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+  enable_tpu               = false
+  resource_labels          = {}
+
+  addons_config {
+    gce_persistent_disk_csi_driver_config {
+      enabled = true
+    }
+    network_policy_config {
+      disabled = false
+    }
+  }
+
+  anonymous_authentication_config {
+    mode = "ENABLED"
+  }
 
   node_config {
+    preemptible  = false
+    spot         = false
     disk_size_gb = var.gke_node_disk_size
     disk_type    = var.gke_node_disk_type
     tags         = [var.environment]
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
   }
 
   private_cluster_config {
