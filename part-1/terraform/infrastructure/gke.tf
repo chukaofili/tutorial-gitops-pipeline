@@ -43,7 +43,7 @@ resource "google_container_cluster" "primary" {
   }
 
   node_config {
-    preemptible  = false
+    preemptible  = true
     spot         = false
     disk_size_gb = var.gke_node_disk_size
     disk_type    = var.gke_node_disk_type
