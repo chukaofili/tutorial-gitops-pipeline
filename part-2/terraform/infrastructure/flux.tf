@@ -1,4 +1,8 @@
 ############################################
+# Added for Part 2
+############################################
+
+############################################
 # 1) Google Client Config (current gcloud context)
 ############################################
 # This data source fetches details from your currently authenticated

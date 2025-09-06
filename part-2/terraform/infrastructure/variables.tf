@@ -86,7 +86,10 @@ variable "sql_user_name" {
   default     = "app_user"
 }
 
-// New variables added From Part 2
+############################################
+# Added for Part 2
+############################################
+
 variable "github_organization" {
   description = "Github organization name, use this to specify the github organization name to use for terraform cloud this can be either github individual or a team org account"
   type        = string

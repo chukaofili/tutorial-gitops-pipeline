@@ -87,7 +87,10 @@ resource "tfe_variable" "terraform_cloud_workspace_name" {
   description  = "Terraform Cloud workspace"
 }
 
-# New tfe_variables added From Part 2
+############################################
+# Added for Part 2
+############################################
+
 resource "tfe_variable" "terraform_cloud_github_organization_name" {
   workspace_id = tfe_workspace.main_workspace.id
   key          = "github_organization"

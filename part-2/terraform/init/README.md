@@ -10,7 +10,7 @@ The init scripts will:
 2. Set up Google Cloud Workload Identity Pool and Provider
 3. Create a service account for Terraform Cloud
 4. Configure the necessary environment variables in Terraform Cloud
-5. Enable auto-apply on git push for the infrastructure folder `/part-1/terraform/infrastructure`
+5. Enable auto-apply on git push for the infrastructure folder `/part-2/terraform/infrastructure`
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Before running these scripts, ensure you have:
    terraform_cloud_workspace_name    = "your-workspace-name"
    github_organization               = "your-github-username-or-org"
    github_repository                 = "your-repo-name"
-   github_working_directory          = "part-1/terraform/infrastructure"
+   github_working_directory          = "part-2/terraform/infrastructure"
 
    google_project_id                 = "your-google-project-id"
    google_region                     = "europe-west3"  # EU region
