@@ -1,4 +1,4 @@
-resource "tfe_variable" "terraform_cloud_workspace_name" {
+resource "tfe_variable" "terraform_cloud_github_organisation_name" {
   workspace_id = tfe_workspace.main_workspace.id
   key          = "github_organisation"
   value        = var.github_organisation
@@ -6,7 +6,7 @@ resource "tfe_variable" "terraform_cloud_workspace_name" {
   description  = "GitHub organization"
 }
 
-resource "tfe_variable" "terraform_cloud_workspace_name" {
+resource "tfe_variable" "terraform_cloud_github_repository_name" {
   workspace_id = tfe_workspace.main_workspace.id
   key          = "github_repository"
   value        = var.github_repository
