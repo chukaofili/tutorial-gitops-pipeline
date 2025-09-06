@@ -118,12 +118,12 @@ resource "google_sql_database" "database" {
 }
 
 locals {
-  postgres_user_db_password_version = 1
+  postgres_user_db_password_version = 3
 }
 
 # Generate a random password for the postgres user
 resource "random_password" "postgres_password" {
-  length  = 16
+  length  = 32
   special = true
 
   keepers = {
