@@ -29,5 +29,5 @@ provider "google" {
 }
 
 provider "github" {
-  owner = var.github_organization
+  owner = var.github_organisation
 }

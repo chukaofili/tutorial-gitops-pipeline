@@ -100,7 +100,7 @@ provider "flux" {
 
   git = {
     # SSH URL to your GitHub repo (org + repo provided via variables)
-    url = "ssh://git@github.com/${var.github_organization}/${var.github_repository}.git"
+    url = "ssh://git@github.com/${var.github_organisation}/${var.github_repository}.git"
 
     # Branch Flux should reconcile from (e.g., "main")
     branch = var.github_repository_branch
