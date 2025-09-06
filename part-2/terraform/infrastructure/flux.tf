@@ -46,7 +46,7 @@ provider "flux" {
   }
 
   git = {
-    # Https URL to your GitHub repo (org + repo provided via variables)
+    # Https URL to your GitHub repo (org + repo provided via variables created from part-1)
     url = "https://github.com/${var.github_organization}/${var.flux_repository}.git"
 
     # Branch Flux should reconcile from (e.g., "main")
