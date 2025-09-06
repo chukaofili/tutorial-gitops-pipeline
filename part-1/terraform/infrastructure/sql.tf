@@ -140,6 +140,14 @@ resource "google_sql_user" "postgres_user" {
   password = random_password.postgres_password.result
 }
 
+# Application user
+resource "google_sql_user" "users" {
+  instance = google_sql_database_instance.postgres.name
+  name     = var.sql_user_name
+  password = random_password.postgres_password.result
+}
+
+
 resource "google_secret_manager_secret" "postgres_host" {
   secret_id = "POSTGRES_HOST"
   replication {
@@ -233,8 +241,3 @@ resource "google_secret_manager_secret_version" "postgres_password_version" {
   ]
 }
 
-resource "google_sql_user" "users" {
-  instance = google_sql_database_instance.postgres.name
-  name     = var.sql_user_name
-  password = random_password.postgres_password.result
-}
