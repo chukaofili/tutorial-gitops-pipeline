@@ -76,5 +76,5 @@ resource "flux_bootstrap_git" "this" {
   embedded_manifests = true
 
   # Make sure the Google Kubernetes Engine cluster exists before bootstrapping
-  depends_on = [google_container_cluster.primary]
+  depends_on = [google_container_cluster.primary, google_compute_router_nat.main]
 }
