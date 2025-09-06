@@ -43,7 +43,7 @@ resource "github_repository_deploy_key" "this" {
 # Flux will reconcile whatever manifests live under the specified path.
 resource "flux_bootstrap_git" "this" {
   # Path in the repo where cluster config lives, e.g., clusters/prod
-  path = "part-2/flux/clusters/${var.flux_cluster_name}"
+  path = "clusters/${var.flux_cluster_name}"
 
   # Include extra controllers for image automation (optional but common)
   components_extra = ["image-reflector-controller", "image-automation-controller"]
