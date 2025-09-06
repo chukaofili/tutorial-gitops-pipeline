@@ -1,5 +1,5 @@
 variable "terraform_cloud_organization_name" {
-  description = "Terraform cloud organisation name, this should already have been created from the init scripts"
+  description = "Terraform cloud organization name, this should already have been created from the init scripts"
   type        = string
 }
 
@@ -86,8 +86,8 @@ variable "sql_user_name" {
   default     = "app_user"
 }
 
-variable "github_organisation" {
-  description = "Github organisation name, use this to specify the github organisation name to use for terraform cloud this can be either github individual or a team org account"
+variable "github_organization" {
+  description = "Github organization name, use this to specify the github organization name to use for terraform cloud this can be either github individual or a team org account"
   type        = string
 }
 

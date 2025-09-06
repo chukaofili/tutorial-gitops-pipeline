@@ -14,7 +14,7 @@ data "tfe_organization" "org" {
   Note: You could also use a different vcs provider like gitlab, bitbucket, etc. but for this tutorial we'll be using github.
 */
 data "tfe_github_app_installation" "gha_installation" {
-  name = var.github_organisation
+  name = var.github_organization
 }
 
 /*
@@ -50,7 +50,7 @@ resource "tfe_workspace" "main_workspace" {
   # This sets the vcs repo to the github repository that will be used to house the infrastructure code.
   vcs_repo {
     github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
-    identifier                 = "${var.github_organisation}/${var.github_repository}"
+    identifier                 = "${var.github_organization}/${var.github_repository}"
     ingress_submodules         = false
   }
 }

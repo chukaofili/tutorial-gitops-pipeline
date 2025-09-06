@@ -38,7 +38,7 @@ Before running these scripts, ensure you have:
    terraform_cloud_organization_name = "your-terraform-cloud-org"
    terraform_cloud_project_name      = "your-project-name"
    terraform_cloud_workspace_name    = "your-workspace-name"
-   github_organisation               = "your-github-username-or-org"
+   github_organization               = "your-github-username-or-org"
    github_repository                 = "your-repo-name"
    github_working_directory          = "part-1/terraform/infrastructure"
 

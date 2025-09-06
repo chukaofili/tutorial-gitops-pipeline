@@ -1,7 +1,7 @@
 terraform_cloud_organization_name = "your-organization-name"
 terraform_cloud_project_name      = "your-project-name"
 terraform_cloud_workspace_name    = "your-workspace-name"
-github_organisation               = "your-github-organization-name"
+github_organization               = "your-github-organization-name"
 github_repository                 = "your-github-repository-name"
 github_working_directory          = "part-1/terraform/infrastructure"
 google_project_id                 = "your-google-project-id"

@@ -1,7 +1,7 @@
 # Append the contents of this file to part-1/terraform/infrastructure/variables.tf.
 
-variable "github_organisation" {
-  description = "Github organisation name, use this to specify the github organisation name to use for terraform cloud this can be either github individual or a team org account"
+variable "github_organization" {
+  description = "Github organization name, use this to specify the github organization name to use for terraform cloud this can be either github individual or a team org account"
   type        = string
 }
 

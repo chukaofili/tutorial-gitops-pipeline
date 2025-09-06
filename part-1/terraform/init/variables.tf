@@ -1,5 +1,5 @@
 variable "terraform_cloud_organization_name" {
-  description = "Terraform cloud organisation name, Make sure terraform organisation exists in your terraform cloud account, if you are not sure, you can create one using the terraform cloud UI here: https://app.terraform.io"
+  description = "Terraform cloud organization name, Make sure terraform organization exists in your terraform cloud account, if you are not sure, you can create one using the terraform cloud UI here: https://app.terraform.io"
   type        = string
 }
 
@@ -13,8 +13,8 @@ variable "terraform_cloud_workspace_name" {
   type        = string
 }
 
-variable "github_organisation" {
-  description = "Github organisation name, use this to specify the github organisation name to use for terraform cloud this can be either github individual or a team org account"
+variable "github_organization" {
+  description = "Github organization name, use this to specify the github organization name to use for terraform cloud this can be either github individual or a team org account"
   type        = string
 }
 

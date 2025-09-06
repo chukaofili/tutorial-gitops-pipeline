@@ -19,7 +19,7 @@ provider "google" {
 
 provider "github" {
   token = var.github_token
-  owner = var.github_organisation
+  owner = var.github_organization
 }
 
 /*
