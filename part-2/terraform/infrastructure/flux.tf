@@ -1,5 +1,3 @@
-# Copy this file part-1/terraform/infrastructure/flux.tf
-
 ############################################
 # 1) Google Client Config (current gcloud context)
 ############################################

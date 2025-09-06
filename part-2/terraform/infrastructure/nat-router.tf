@@ -1,5 +1,3 @@
-# Copy this file part-1/terraform/infrastructure/nat-router.tf
-
 ############################################
 # 1) Create a Cloud Router
 ############################################

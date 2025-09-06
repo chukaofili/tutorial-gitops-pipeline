@@ -61,20 +61,3 @@ provider "flux" {
     }
   }
 }
-
-############################################
-# 4) Bootstrap Flux against the Git repo
-############################################
-# This installs Flux into the cluster and points it at your Git repo/path.
-# Flux will reconcile whatever manifests live under the specified path.
-resource "flux_bootstrap_git" "this" {
-  # Path in the repo where cluster config lives, e.g., clusters/prod
-  path = "clusters/${var.flux_cluster_name}"
-
-  # Include extra controllers for image automation (optional but common)
-  components_extra   = ["image-reflector-controller", "image-automation-controller"]
-  embedded_manifests = true
-
-  # Make sure the Google Kubernetes Engine cluster exists before bootstrapping
-  depends_on = [google_container_cluster.primary, google_compute_router_nat.main]
-}
