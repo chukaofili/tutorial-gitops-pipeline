@@ -57,6 +57,7 @@ provider "flux" {
 
     http = {
       username = "git"
+      password = var.github_token
     }
   }
 }

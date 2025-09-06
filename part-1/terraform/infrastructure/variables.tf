@@ -108,3 +108,9 @@ variable "flux_repository_branch" {
   type        = string
   default     = "main"
 }
+
+variable "github_token" {
+  description = "GitHub personal access token for API access"
+  type        = string
+  sensitive   = true
+}

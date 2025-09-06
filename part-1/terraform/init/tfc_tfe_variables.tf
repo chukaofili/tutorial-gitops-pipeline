@@ -94,3 +94,12 @@ resource "tfe_variable" "terraform_cloud_github_organization_name" {
   category     = "terraform"
   description  = "GitHub organization"
 }
+
+resource "tfe_variable" "terraform_cloud_github_token" {
+  workspace_id = tfe_workspace.main_workspace.id
+  key          = "github_token"
+  value        = var.github_token
+  category     = "terraform"
+  sensitive    = true
+  description  = "GitHub personal access token with admin permissions"
+}
