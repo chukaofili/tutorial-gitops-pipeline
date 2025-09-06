@@ -1,3 +1,5 @@
+# Copy this file part-1/terraform/infrastructure/flux.tf
+
 ############################################
 # 1) Generate an SSH keypair for Flux
 ############################################

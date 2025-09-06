@@ -1,3 +1,5 @@
+# Replace the contents of this file to part-1/terraform/infrastructure/providers.tf.
+
 terraform {
   required_providers {
     google = {

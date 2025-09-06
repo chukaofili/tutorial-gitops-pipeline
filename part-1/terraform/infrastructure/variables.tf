@@ -92,7 +92,7 @@ variable "github_organisation" {
 }
 
 variable "flux_cluster_name" {
-  description = "FluxCD cluster config name"
+  description = "FluxCD cluster name"
   type        = string
   default     = "primary-cluster"
 }
@@ -100,7 +100,7 @@ variable "flux_cluster_name" {
 variable "flux_repository" {
   description = "FluxCD Github repository name, use this to specify the github repository used for fluxcd to manage the cluster state"
   type        = string
-  default     = "fluxcd"
+  default     = "tutorial-gitops-fluxcd" # Change this to wwhatever you named your repository in part-1 -> provision the infra -> step 6
 }
 
 variable "flux_repository_branch" {
