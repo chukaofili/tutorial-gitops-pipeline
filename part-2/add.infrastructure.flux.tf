@@ -26,8 +26,6 @@ provider "kubernetes" {
   token = data.google_client_config.default.access_token
 
   # The cluster CA cert is base64-encoded by GKE; decode for the provider
-  # NOTE: Be consistent: either use data.google_container_cluster or
-  # google_container_cluster for both lines. This line references the resource.
   cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
 }
 
@@ -40,11 +38,8 @@ provider "kubernetes" {
 provider "flux" {
   kubernetes = {
     # Same cluster endpoint and token used above
-    host  = "https://${google_container_cluster.primary.endpoint}"
-    token = data.google_client_config.default.access_token
-
-    # NOTE: This line uses the *data* source for the CA cert.
-    # Align with the kubernetes provider to avoid confusion.
+    host                   = "https://${google_container_cluster.primary.endpoint}"
+    token                  = data.google_client_config.default.access_token
     cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
   }
 
