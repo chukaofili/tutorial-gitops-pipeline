@@ -117,10 +117,20 @@ resource "google_sql_database" "database" {
   instance = google_sql_database_instance.postgres.name
 }
 
+locals {
+  postgres_user_db_password_version = 1
+}
+
 # Generate a random password for the postgres user
 resource "random_password" "postgres_password" {
   length  = 16
   special = true
+
+  keepers = {
+    // Use the local.postgres_user_db_password_version as a keeper 
+    // to force regeneration when it changes
+    version = local.postgres_user_db_password_version
+  }
 }
 
 # Default postgres user
@@ -211,8 +221,10 @@ resource "google_secret_manager_secret" "postgres_password" {
 }
 
 resource "google_secret_manager_secret_version" "postgres_password_version" {
-  secret                 = google_secret_manager_secret.postgres_password.id
-  secret_data_wo_version = 1
+  secret = google_secret_manager_secret.postgres_password.id
+  // Use the local.postgres_user_db_password_version as a secret_data_wo_version
+  // to force regeneration when it changes
+  secret_data_wo_version = local.postgres_user_db_password_version
   secret_data_wo         = random_password.postgres_password.result
 
   depends_on = [
