@@ -17,11 +17,11 @@ resource "github_repository_deploy_key" "this" {
   # Helpful name so you can identify which cluster this key belongs to
   title = "flux-deploy-key-${var.flux_cluster_name}"
 
-  # The GitHub repository name (e.g., "my-infra") — passed in via a Terraform var
-  # In an ideal world you would use a different repo for the Flux config and manifest files
-  # But for the sake of simplicity we are using the same repo as the terraform code.
-  # This has already been setup during the init folder apply in part-2
-  repository = var.github_repository
+  # The FluxCD repository name (e.g., "fluxcd") — passed in via a Terraform var
+  # This is where all the flux configuration and cluster state will be stored
+  # PRs to the repository will be automatically applied to the cluster by fluxcd
+  # This should be the same repository you created in part-1 -> provision the infra -> step 6
+  repository = var.flux_repository
 
   # Use the public half of the key we just generated
   key = tls_private_key.flux.public_key_openssh
@@ -100,10 +100,10 @@ provider "flux" {
 
   git = {
     # SSH URL to your GitHub repo (org + repo provided via variables)
-    url = "ssh://git@github.com/${var.github_organisation}/${var.github_repository}.git"
+    url = "ssh://git@github.com/${var.github_organisation}/${var.flux_repository}.git"
 
     # Branch Flux should reconcile from (e.g., "main")
-    branch = var.github_repository_branch
+    branch = var.flux_repository_branch
 
     ssh = {
       # SSH username for Git over SSH is always "git" on GitHub

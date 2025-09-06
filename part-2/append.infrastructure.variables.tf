@@ -3,19 +3,20 @@ variable "github_organisation" {
   type        = string
 }
 
-variable "github_repository" {
-  description = "Github repository name, use this to specify the github repository name to use for terraform cloud"
-  type        = string
-}
-
 variable "flux_cluster_name" {
-  description = "Flux cluster config name"
+  description = "FluxCD cluster name"
   type        = string
   default     = "primary-cluster"
 }
 
-variable "github_repository_branch" {
-  description = "Flux git repository branch"
+variable "flux_repository" {
+  description = "FluxCD Github repository name, use this to specify the github repository used for fluxcd to manage the cluster state"
+  type        = string
+  default     = "fluxcd"
+}
+
+variable "flux_repository_branch" {
+  description = "FluxCD git repository branch to use"
   type        = string
   default     = "main"
 }
