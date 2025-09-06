@@ -1,16 +1,7 @@
 # Copy this file part-1/terraform/infrastructure/nat-router.tf
 
 ############################################
-# 1) Look up the default VPC network
-############################################
-# This data source fetches the "default" VPC network in your project.
-# We attach our Cloud Router and NAT to this network.
-data "google_compute_network" "default" {
-  name = "default"
-}
-
-############################################
-# 2) Create a Cloud Router
+# 1) Create a Cloud Router
 ############################################
 # A Cloud Router is required for Cloud NAT.
 # It manages dynamic routes and acts as the control plane for NAT.
@@ -27,7 +18,7 @@ resource "google_compute_router" "nat-router" {
 }
 
 ############################################
-# 3) Configure Cloud NAT
+# 2) Configure Cloud NAT
 ############################################
 # Cloud NAT lets private resources (like GKE nodes without public IPs)
 # access the internet securely for pulling container images, updates, etc.
