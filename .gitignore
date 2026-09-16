@@ -28,3 +28,4 @@ crash.*.log
 **/*terraform.rc
 **/*.credentials.json
 **/*.env
+.DS_Store
